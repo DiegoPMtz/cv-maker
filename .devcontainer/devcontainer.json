@@ -1,0 +1,28 @@
+{
+    "name": "Mi Portfolio Rails",
+    
+    // Le dice a VS Code que use nuestro archivo compose.yml
+    "dockerComposeFile": [
+      "../compose.yml"
+    ],
+    
+    // El nombre del servicio al que nos queremos conectar
+    "service": "web",
+    
+    // La carpeta que se abrirá por defecto en la terminal una vez dentro
+    "workspaceFolder": "/rails",
+  
+    // Un comando que se ejecuta solo la primera vez que se crea el contenedor. Útil para depurar.
+    "postCreateCommand": "echo 'Contenedor de desarrollo creado y listo.'",
+  
+    // Opcional pero recomendado: Instala extensiones útiles de VS Code DENTRO del contenedor
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "Shopify.ruby-lsp",
+          "castwide.solargraph",
+          "rebornix.Ruby"
+        ]
+      }
+    }
+  }

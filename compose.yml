@@ -1,0 +1,27 @@
+services:
+
+  db:
+    image: postgres:15.4
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: app_development
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  web:
+    build: .
+    user: root
+    entrypoint: "/rails/entrypoint.dev.sh"
+    command: ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
+    environment:
+      RAILS_ENV: development
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/rails
+    depends_on:
+      - db
+
+volumes:
+  db_data:
